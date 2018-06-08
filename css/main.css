@@ -1,0 +1,58 @@
+#receipt-form td>input {
+	border: 0;
+	box-shadow: none;
+}
+
+#receipt-form thead th, #receipt-form tfoot td {
+	padding: 15px;
+}
+
+#receipt-form tbody td {
+	padding: 0;
+}
+
+#receipt-form td>input {
+	border-radius: 0;
+	font-size: 18px;
+	height:45px;
+}
+
+.mb20 {
+	margin-bottom: 20px;
+}
+.mt15 {
+	margin-top: 15px;
+}
+
+.mr5 {
+	margin-right: 5px;
+}
+
+.f20 {
+	font-size: 20px;
+}
+
+.pointer {
+	cursor: pointer;
+}	
+
+#receipt-form tr:nth-child(odd) input {
+	background: #f9f9f9;
+}
+
+#receipt-form .amount-data {
+	border-right: 1px solid rgb(215, 215, 215);
+	width: 100px;
+}
+
+#receipt-form:not(.print-view) .delete-line {
+	background: rgb(245, 233, 233);
+}
+
+#receipt-form .delete-line:hover {
+	background: rgb(234, 205, 205);
+}
+
+#receipt-form .delete-line:hover i {
+	color: red;
+}

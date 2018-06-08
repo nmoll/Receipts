@@ -1,0 +1,65 @@
+<html>
+<head>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript" src="js/angular-local-storage.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+
+	<div ng-app="ReceiptBuilder">
+	
+		<div class="container" ng-controller="ReceiptCtrl" style="margin-top: 50px;">
+		
+			<div class="clearfix mb20">
+				<button class="btn btn-default pull-right" ng-click="isInPrintView = true" ng-hide="isInPrintView">
+					<i class="fa fa-print"></i> Preview
+				</button>
+				
+				<button class="btn btn-default pull-right mr5" ng-click="addLines(3)" ng-hide="isInPrintView">
+					<i class="fa fa-plus-circle"></i> Lines
+				</button>
+				
+				<button class="btn btn-default pull-right mr5" ng-click="clear()" ng-hide="isInPrintView">
+					<i class="fa fa-ban"></i> Clear
+				</button>
+				
+				<button class="btn btn-success pull-right mr5" ng-click="save()" ng-hide="isInPrintView" ng-disabled="!Receipt.isDirty()">
+					<i class="fa fa-save"></i> Save
+				</button>
+				
+				<h4>{{ currentDate() | date }}</h4>
+				
+			</div>
+	
+			<table class="table table-striped" id="receipt-form" ng-class="{ 'print-view' : isInPrintView }" ng-click="isInPrintView = false">
+				<thead>
+					<tr>
+						<th>Amount</th>
+						<th>Name</th>
+						<th style="width: 20px;"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in getLineItems()" ng-hide="isHidden(item)">
+						<td class="amount-data"><input ng-model="item.amount" class="form-control" /></td>
+						<td><input ng-model="item.description" class="form-control" /></td>
+						<td class="text-center pointer delete-line" ng-click="removeLine(item)">
+							<i class="fa fa-minus-circle text-danger mt15" ng-hide="isInPrintView"></i>
+						</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="3" class="text-success f20">{{ getTotalAmount() | currency }}</td>
+					</tr>
+				</tfoot>	
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>
